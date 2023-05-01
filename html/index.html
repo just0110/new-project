@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="https://maxwellito.github.io/vivus/dist/vivus.js"></script>
+  <script type="text/javascript">
+  
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms)); 
+}
+
+async function play(frame = 1, s = 500) {
+
+localStorage.frame_num = frame;
+
+document.getElementById('Main').innerHTML = "";
+
+
+   SVG = new Vivus('Main', {type: 'oneByOne', start:'manual', duration: s, file: './frame'+frame+'.svg',
+    onReady: function (obj) {
+    obj.play(2); }}, 
+    function (obj) { 
+    obj.el.classList.add('finished');
+  } );
+
+
+}
+function stop(s) {
+  s.stop();
+}
+</script>
+<style>
+/* Style */
+
+div {
+    height:100vh;
+      position: relative;
+}
+svg * {
+  fill-opacity: 0;
+  transition: fill-opacity 3s;
+}
+
+svg.finished * {
+  fill-opacity: 1;
+}
+
+
+</style>
+</head>
+<body>
+<div id="Main" align="center">
+  <h1>HELLO!</h1>
+</div>
+</body>
+</html>
